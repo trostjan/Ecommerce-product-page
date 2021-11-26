@@ -1,11 +1,13 @@
 {
   "name": "ecommerce-product-page",
   "version": "1.0.0",
-  "description": "",
+  "description": "![Design preview for the Easybank landing page](./design/desktop-preview.jpg)",
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "predeploy": "rm -rf dist && parcel build ./*.html --public-url 'https://github.com/trostjan/ecommerce-product-page'",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,16 @@
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.43.4"
-  }
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trostjan/ecommerce-product-page.git"
+  },
+  "bugs": {
+    "url": "https://github.com/trostjan/ecommerce-product-page/issues"
+  },
+  "homepage": "https://github.com/trostjan/ecommerce-product-page#readme"
 }
