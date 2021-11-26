@@ -1,0 +1,211 @@
+@use '../util' as *;
+
+.header{
+    position:relative;
+    margin-top: rem(26);
+    padding:0 rem(24) 0 rem(24);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: rem(34);
+    border-bottom: solid rem(2) var(--LightGrayishBlue);
+
+
+    &_left_column,
+    &_right_column{
+        display:flex;
+        align-items: center;
+    }
+
+    &_nav-mobile{
+        opacity:0;
+        visibility: hidden;
+        position: absolute;
+        width: 67%;
+        height: calc(100vh - rem(26));
+        background-color: white;
+        top:0;
+        left:0;
+        z-index: 1;
+        transition: opacity 0.3s ease-in-out;
+
+        @include breakpoint(large){
+            display:none;
+        }
+
+        ul{
+            list-style: none;
+            padding-left: rem(24);
+            padding-top: rem(60);
+        }
+    
+        ul li:not(:last-child){
+            padding-bottom: rem(34);
+        }
+    
+        ul li a{
+            color:var(--VeryDarkGrayishBlue);
+            font-weight: 700;
+            font-size: rem(18);
+        }
+    
+        ul li a:hover{
+            color:var(--VeryDarkBlue);
+        }
+    }
+
+    .overlay{
+        visibility: hidden;
+        opacity:0;
+        position:absolute;
+        top:-26px;
+        right: 0;
+        width: 33%;
+        height: calc(100vh);
+        background-color: rgba(0, 0, 0, 0.7);
+        transition: opacity 0.4s ease-in-out;
+
+        @include breakpoint(large){
+            display:none;
+        }
+    }
+    
+
+    &_logo{
+        @include breakpoint-down(medium){
+            margin-left: rem(45);
+        }
+    }
+
+    &_nav-desktop{
+        @include breakpoint-down(medium) {
+            display:none;
+        }
+
+        ul{
+            padding-left:rem(56);
+        }
+    
+        ul li{
+            display: inline-block;
+            padding-right: rem(34);
+        }
+    
+        ul li a{
+            color:var(--DarkGrayishBlue);
+            font-size: rem(16);
+            position: relative;
+        }
+    
+        ul li a:hover{
+            color:var(--VeryDarkBlue);
+        }
+    
+        ul li a:hover::after{
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: rem(3);
+            background-color: var(--Orange);
+            top: rem(68);
+        }
+    
+        ul li:nth-last-child(1){
+            padding-right: 0;  
+        }
+    }
+
+    &_cart_icon{
+        position: relative;
+        margin-right: rem(46) ;
+        cursor:pointer;
+
+        @include breakpoint-down(medium){
+            margin-right: rem(16) ;
+        }
+
+    }
+
+    &_item-count{
+        position: absolute;
+        text-align: center;
+        width: rem(18);
+        height: rem(14);
+        font-size: rem(10);
+        right:-5px;
+        top:-5px;
+        background-color: var(--Orange);
+        color: var(--LightGrayishBlue);
+        border-radius: 50%;
+
+    }
+
+
+    &_user_avatar{
+        display: block;
+        width: rem(54);
+        height: rem(54);
+        border-radius: 50%;
+        cursor: pointer;
+
+        @include breakpoint-down(medium){
+            height: rem(27);
+            width: rem(27);
+        }
+    }
+
+    &_user_avatar:hover{
+        border: solid rem(2) var(--Orange); 
+    }
+
+    &_toggle { // Mobile Menu Toggle
+        position: absolute;
+        left:rem(24);
+        top:rem(8);
+        z-index: 999;
+
+        @include breakpoint(large){
+            display: none;
+        }
+        > span {
+          display: block;
+          width: 26px;
+          height: 3px;
+          background-color: var(--VeryDarkBlue);
+          transition: all 300ms ease-in-out;
+          transform-origin: 3px 1px;
+    
+          &:not(:last-child){
+            margin-bottom: 4px;
+          }
+        }
+      }
+
+    &.open{
+        .header_toggle {
+            > span:first-child {
+            transform: rotate(45deg);
+            }
+            
+            > span:nth-child(2) {
+            opacity: 0;
+            }
+            
+            > span:last-child {
+            transform: rotate(-45deg);
+            }
+        }
+
+        .header_nav-mobile{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .overlay{
+            visibility: visible;
+            opacity: 1;
+        }
+
+    }
+}
